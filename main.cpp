@@ -9,6 +9,8 @@
 #define ARRAY_SIZE 40      // trabalho final com o valores 10.000, 100.000, 1.000.000
 
 int main(int argc, char* argv[]){
+
+    auto start = std::chrono::high_resolution_clock::now();
     const int delta = 10;
 
     MPI_Init(&argc, &argv);
@@ -54,14 +56,19 @@ int main(int argc, char* argv[]){
         MPI_Send(vector, size_vector, MPI_INT, father_id, 0, MPI_COMM_WORLD);
     }
 
-    #ifdef DEBUG
-        if( rank == 0){
-            printf("\nVetor: ");
-            for (int i=0 ; i< ARRAY_SIZE; i++){
-                printf("[%03d] ", vector[i]);
-            }
+    
+        if(rank == 0){
+            #ifdef DEBUG
+                printf("\nVetor: ");
+                for (int i=0 ; i< ARRAY_SIZE; i++){
+                    printf("[%03d] ", vector[i]);
+                }
+            #endif
+            auto end = std::chrono::high_resolution_clock::now();
+		    std::chrono::duration<double, std::milli> ms = end - start;
+		    std::cout << hist.print() << "time: " << ms.count() << "ms" << std::endl;
         }
-    #endif
+    
 
     MPI_Finalize();
     return 0;
