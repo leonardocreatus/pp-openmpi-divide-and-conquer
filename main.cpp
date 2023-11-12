@@ -6,12 +6,18 @@
 #include "initialize-vector.hpp"
 
 #define DEBUG 1            // comentar esta linha quando for medir tempo
-#define ARRAY_SIZE 40      // trabalho final com o valores 10.000, 100.000, 1.000.000
+#define ARRAY_SIZE 1000000 // trabalho final com o valores 10.000, 100.000, 1.000.000
+
+/*
+   X
+ X   X
+X X X X 
+*/
 
 int main(int argc, char* argv[]){
 
     auto start = std::chrono::high_resolution_clock::now();
-    const int delta = 10;
+    const int delta = ARRAY_SIZE / 4;
 
     MPI_Init(&argc, &argv);
 	int rank, size;
