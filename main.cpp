@@ -72,7 +72,7 @@ int main(int argc, char* argv[]){
             #endif
             auto end = std::chrono::high_resolution_clock::now();
 		    std::chrono::duration<double, std::milli> ms = end - start;
-		    std::cout << hist.print() << "time: " << ms.count() << "ms" << std::endl;
+		    std::cout << "time: " << ms.count() << "ms" << std::endl;
         }
     
 
