@@ -11,7 +11,6 @@
 int main(int argc, char* argv[]){
 
     auto start = std::chrono::high_resolution_clock::now();
-    const int delta = ARRAY_SIZE / 4;
 
     MPI_Init(&argc, &argv);
 	int rank, size;
@@ -24,6 +23,7 @@ int main(int argc, char* argv[]){
         MPI_Finalize();
         return 0;
     }
+	const int delta = ARRAY_SIZE / (size / 2 + 1);
 
     int father_id = rank == 0 ? -1 : (rank - 1) / 2;
     bool is_leaf = 2 * rank + 1 >= size;
